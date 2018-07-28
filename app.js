@@ -8,19 +8,23 @@ var requestSettings = {
   encoding: null
 };
 
+var LTRAINSTATUS = 'Normal';
+
 request(requestSettings, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     var feed = GtfsRealtimeBindings.FeedMessage.decode(body);
     feed.entity.forEach(function(entity) {
-        console.log('alert: '+ entity.alert);
-        console.log(typeof entity.alert);
+        //console.log('alert: '+ entity.alert);
+        //console.log(typeof entity.alert);
     });
     for (i in feed.entity) {
         if (feed.entity.alert !== undefined) {
-            console.log("Status: Delay");
+            //console.log("Status: Delay");
+            LTRAINSTATUS = 'Delayed'
             break;
         }
-        console.log("Status: Normal") 
     }
+    console.log("The L train is %s", LTRAINSTATUS);
+    return LTRAINSTATUS
   }
 });
