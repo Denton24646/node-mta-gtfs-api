@@ -20,11 +20,14 @@ request(requestSettings, function (error, response, body) {
     for (i in feed.entity) {
         if (feed.entity.alert !== undefined) {
             //console.log("Status: Delay");
-            LTRAINSTATUS = 'Delayed'
+            LTRAINSTATUS = 'Delayed';
             break;
         }
     }
-    console.log("The L train is %s", LTRAINSTATUS);
-    return LTRAINSTATUS
+    console.log("%s", LTRAINSTATUS);
+    return LTRAINSTATUS;
+  } else {
+      LTRAINSTATUS = "Unknown";
+      return LTRAINSTATUS;
   }
 });
