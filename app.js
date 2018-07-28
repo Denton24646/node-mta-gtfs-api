@@ -13,6 +13,14 @@ request(requestSettings, function (error, response, body) {
     var feed = GtfsRealtimeBindings.FeedMessage.decode(body);
     feed.entity.forEach(function(entity) {
         console.log('alert: '+ entity.alert);
+        console.log(typeof entity.alert);
     });
+    for (i in feed.entity) {
+        if (feed.entity.alert !== undefined) {
+            console.log("Status: Delay");
+            break;
+        }
+        console.log("Status: Normal") 
+    }
   }
 });
